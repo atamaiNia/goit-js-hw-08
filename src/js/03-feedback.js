@@ -36,7 +36,7 @@ function onFormSubmit(e) {
   } = e.currentTarget;
 
   if (email.value === '' || message.value === '') {
-    return console.log('Please fill in all the fields!');
+    return alert('Please fill in all the fields!');
   }
   const formData = {
     email: email.value,
