@@ -13,18 +13,10 @@ function onPlayVideo(time) {
 player.on('timeupdate', throttle(onPlayVideo, 1000));
 
 const savedCurrentTime = localStorage.getItem('videoplayer-current-time');
-const parsedsavedCurrentTime = JSON.parse(savedCurrentTime);
-const { seconds } = parsedsavedCurrentTime;
-console.log(seconds);
+if (savedCurrentTime) {
+  const parsedsavedCurrentTime = JSON.parse(savedCurrentTime);
+  const { seconds } = parsedsavedCurrentTime;
+  console.log(seconds);
 
-player
-  .setCurrentTime(seconds)
-  .then(function (seconds) {})
-  .catch(function (error) {
-    switch (error.name) {
-      case 'RangeError':
-        break;
-      default:
-        break;
-    }
-  });
+  player.setCurrentTime(seconds);
+}
