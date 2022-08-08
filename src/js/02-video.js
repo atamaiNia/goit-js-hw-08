@@ -12,11 +12,17 @@ function onPlayVideo(time) {
 
 player.on('timeupdate', throttle(onPlayVideo, 1000));
 
-const savedCurrentTime = localStorage.getItem('videoplayer-current-time');
-if (savedCurrentTime) {
-  const parsedsavedCurrentTime = JSON.parse(savedCurrentTime);
-  const { seconds } = parsedsavedCurrentTime;
-  console.log(seconds);
+const currentTime = localStorage.getItem('videoplayer-current-time');
 
-  player.setCurrentTime(seconds);
+function savedCurrentTime(currentTime) {
+  if (currentTime) {
+    const parsedsavedCurrentTime = JSON.parse(currentTime);
+    const { seconds } = parsedsavedCurrentTime;
+    console.log(seconds);
+    player.setCurrentTime(seconds);
+  } else {
+    parsedsavedCurrentTime = 0;
+  }
 }
+
+savedCurrentTime(currentTime);
